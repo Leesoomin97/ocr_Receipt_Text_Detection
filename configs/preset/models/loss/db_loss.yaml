@@ -1,0 +1,12 @@
+# @package _global_
+
+# https://arxiv.org/pdf/1911.08947.pdf 참조
+
+models:
+  loss:
+    _target_: ocr.models.loss.DBLoss
+    negative_ratio: 3.0
+    eps: 1e-6
+    prob_map_loss_weight: 7.0      # 🔼 5.0 → 7.0
+    thresh_map_loss_weight: 10.0
+    binary_map_loss_weight: 1.0

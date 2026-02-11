@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - /preset/base
+  - /preset/models/model_example
+  - /preset/datasets/db
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+seed: 42
+exp_name: "ocr_training"
+project_name: "OCRProject"
+
+# 🔑 반드시 학습된 checkpoint 지정
+checkpoint_path: outputs/ocr_training/checkpoints/epoch=19-step=8180.ckpt   # CLI에서 지정 권장
+
+# predict 옵션
+minified_json: False
+
+# predict에서는 trainer 전체 필요 없음
+trainer:
+  deterministic: True
+
+# train.py에서 참조하는 경로들 (루트에 있어야 함)
+log_dir: outputs/${exp_name}/logs
+checkpoint_dir: outputs/${exp_name}/checkpoints
+submission_dir: outputs/${exp_name}/submissions
